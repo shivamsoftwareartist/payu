@@ -119,9 +119,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-PAYU_MERCHANT_KEY = "Your MerchantID",
+PAYU_MERCHANT_KEY = "P2zYe5F3",
 
-PAYU_MERCHANT_SALT = "Your MerchantSALT",
+PAYU_MERCHANT_SALT = "MWEhWKLvfU",
 
 # And add the PAYU_MODE to 'TEST' for testing and 'LIVE' for production.
 PAYU_MODE = "TEST"
