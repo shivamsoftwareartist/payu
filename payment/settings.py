@@ -118,3 +118,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+PAYU_MERCHANT_KEY = "Your MerchantID",
+
+PAYU_MERCHANT_SALT = "Your MerchantSALT",
+
+# And add the PAYU_MODE to 'TEST' for testing and 'LIVE' for production.
+PAYU_MODE = "TEST"

@@ -12,14 +12,18 @@ from django.views.decorators.csrf import csrf_protect, csrf_exempt
 import json
 from uuid import uuid4
 from hashlib import sha512
+import requests
+from django.conf import settings
+
+
 
 def index(request):
-    return(request, "index.html")
+    return render(request, "index.html")
 
-@csrf_exempt
+# @csrf_exempt
 def Home(request):
-    key = P2zYe5F3
-    salt = MWEhWKLvfU
+    key = settings.PAYU_MERCHANT_KEY
+    salt = settings.PAYU_MERCHANT_SALT
     txnid = uuid4().hex
     amount = '1'
     firstname = 'Jaysinh'
@@ -44,9 +48,11 @@ def Home(request):
         "furl": 'http://127.0.0.1:8000/payment/failure',
         })
 
-    urllib2.urlopen("https://sandboxsecure.payu.in/_payment", data)
+    # urllib2.urlopen("https://sandboxsecure.payu.in/_payment", data)
+    requests.post('https://sandboxsecure.payu.in/_payment', data)
 
-    return (request, "index")
+    # return render(request, "index")
+    return HttpResponse("Payment proceed")
 
 
 # "success_url": "http://127.0.0.1:8000/payment/success",
