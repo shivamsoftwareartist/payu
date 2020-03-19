@@ -21,6 +21,7 @@ from django.http import JsonResponse
 
 def index(request):
     return render(request, "index.html")
+    
 
 @csrf_exempt
 def Home(request):
@@ -48,7 +49,7 @@ def Home(request):
         hash_string+='|'
     hash_string+=str(salt)
     hashh = hashlib.sha512(hash_string.encode('utf-8')).hexdigest().lower()
-    print('4', hashh)
+    print(hashh)
     # hashh = hashlib.sha512(hashSequence.encode('utf-8')).hexdigest().lower()
     data = {
         "key": salt,
@@ -63,24 +64,9 @@ def Home(request):
         "hash": hashh,
         "service_provider": "payu_paisa",
         }
-    print('5',data)
+    print(data)
     url = 'https://sandboxsecure.payu.in/_payment'
-
-    # $.ajax({
-    #     "url": url,
-    #     "type": "post",
-    #     "data": data
-    #    "success": success_callback,
-    #    "error": error_callback
-    # })
-    
-    
-    # successful = urllib2.urlopen("https://sandboxsecure.payu.in/_payment", data)
     successful = requests.post(url, data=data)
-    print('6')
-    print(successful.text)
-    # return render(request, "index")
-    # successful = urlopen(url, data)
     return HttpResponse(successful)
     # return HttpResponse('payment successful')
 
