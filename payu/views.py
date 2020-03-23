@@ -66,6 +66,7 @@ def Home(request):
         }
     print(data)
     url = 'https://sandboxsecure.payu.in/_payment'
+    # successful = requests.post(url, data=json.dumps(data))
     successful = requests.post(url, data=data)
     return HttpResponse(successful)
     # return HttpResponse('payment successful')
